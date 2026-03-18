@@ -1,4 +1,5 @@
 <?php
+<?php
 
 namespace App\Game\Model;
 
@@ -125,9 +126,6 @@ class Player
         return false;
     }
 
-    /**
-     * @return int[]
-     */
     public function getPlayableCardIndexes(Card $topCard): array
     {
         $playableIndexes = [];

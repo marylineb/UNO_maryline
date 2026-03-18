@@ -8,12 +8,19 @@ use App\Game\Model\Player;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\RequestStack;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Attribute\Route;
 
-class HomeController extends AbstractController
+final class HomeController extends AbstractController
 {
     #[Route('/', name: 'home')]
-    public function index(RequestStack $requestStack): RedirectResponse
+    public function index(): Response
+    {
+        return $this->render('home/index.html.twig');
+    }
+
+    #[Route('/new', name: 'new_game')]
+    public function newGame(RequestStack $requestStack): RedirectResponse
     {
         $session = $requestStack->getSession();
 
@@ -21,6 +28,7 @@ class HomeController extends AbstractController
         $values = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'X', 'S', '+2'];
 
         $deck = [];
+
         foreach ($colors as $color) {
             foreach ($values as $value) {
                 $deck[] = new Card($color, $value);
@@ -31,22 +39,29 @@ class HomeController extends AbstractController
         shuffle($deck);
 
         $players = [
-            new Player(0, 'Human', true),
-            new Player(1, 'Bot 1'),
-            new Player(2, 'Bot 2'),
-            new Player(3, 'Bot 3'),
+            new Player(0, 'Toi', 'human'),
+            new Player(1, 'Ordi 1', 'computer', 1),
+            new Player(2, 'Ordi 2', 'computer', 2),
+            new Player(3, 'Ordi 3', 'computer', 3),
         ];
 
         for ($i = 0; $i < 7; $i++) {
             foreach ($players as $player) {
                 $card = array_shift($deck);
-                if ($card) {
+
+                if ($card instanceof Card) {
                     $player->addCard($card);
                 }
             }
         }
 
-        $firstCard = array_shift($deck);
+        do {
+            $firstCard = array_shift($deck);
+        } while ($firstCard instanceof Card && in_array($firstCard->getValue(), ['X', 'S', '+2'], true));
+
+        if (!$firstCard instanceof Card) {
+            return $this->redirectToRoute('home');
+        }
 
         $gameState = new GameState($players, $deck, [$firstCard]);
         $gameState->setCurrentPlayerIndex(0);

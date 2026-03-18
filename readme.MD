@@ -19,21 +19,9 @@ uno/
 │   ├── Game/
 │   │
 │   │   ├── Model/
-│   │   │   ├── Card.php             ← classe Card (OBLIGATOIRE)
-│   │   │   ├── Player.php           ← classe Player (OBLIGATOIRE)
-│   │   │   └── GameState.php        ← état global du jeu
-│   │
-│   │   ├── Logic/
-│   │   │   ├── DeckManager.php      ← créer + mélanger les cartes
-│   │   │   ├── GameManager.php      ← logique principale
-│   │   │   ├── RuleManager.php      ← règles UNO
-│   │   │   └── TurnManager.php      ← gestion des tours
-│   │
-│   │   └── Session/
-│   │       └── GameSession.php      ← stockage SESSION
-│
-│   └── Service/
-│       └── UnoService.php           ← orchestrateur global
+│   │       ├── Card.php             ← classe Card (OBLIGATOIRE)
+│   │       ├── Player.php           ← classe Player (OBLIGATOIRE)
+│   │       └── GameState.php        ← état global du jeu
 │
 ├── templates/
 │   ├── home/

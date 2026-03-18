@@ -38,14 +38,21 @@ final class EnemyController extends AbstractController
             return $this->redirectToRoute('play');
         }
 
+        $drawStack = $gameState->getDrawStack();
         $playable = [];
 
         foreach ($player->getHand() as $index => $card) {
-            if (
-                $card->getColor() === $topCard->getColor()
-                || $card->getValue() === $topCard->getValue()
-            ) {
-                $playable[] = $index;
+            if ($drawStack > 0) {
+                if ($card->getValue() === '+2') {
+                    $playable[] = $index;
+                }
+            } else {
+                if (
+                    $card->getColor() === $topCard->getColor()
+                    || $card->getValue() === $topCard->getValue()
+                ) {
+                    $playable[] = $index;
+                }
             }
         }
 
@@ -80,9 +87,17 @@ final class EnemyController extends AbstractController
                 }
             }
         } else {
-            $drawnCard = $gameState->drawCard();
-            if ($drawnCard instanceof Card) {
-                $player->addCard($drawnCard);
+            $cardsToDraw = $drawStack > 0 ? $drawStack : 1;
+
+            for ($i = 0; $i < $cardsToDraw; $i++) {
+                $drawnCard = $gameState->drawCard();
+                if ($drawnCard instanceof Card) {
+                    $player->addCard($drawnCard);
+                }
+            }
+
+            if ($drawStack > 0) {
+                $gameState->resetDrawStack();
             }
         }
 

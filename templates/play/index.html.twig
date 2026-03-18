@@ -44,8 +44,14 @@
     {% set canPlay = false %}
 
     {% for card in humanPlayer.hand %}
-        {% if card.color == topCard.color or card.value == topCard.value %}
-            {% set canPlay = true %}
+        {% if drawStack > 0 %}
+            {% if card.value == '+2' %}
+                {% set canPlay = true %}
+            {% endif %}
+        {% else %}
+            {% if card.color == topCard.color or card.value == topCard.value %}
+                {% set canPlay = true %}
+            {% endif %}
         {% endif %}
     {% endfor %}
 
@@ -54,7 +60,11 @@
 
         <div class="hand-list">
             {% for card in humanPlayer.hand %}
-                {% set playable = card.color == topCard.color or card.value == topCard.value %}
+                {% if drawStack > 0 %}
+                    {% set playable = card.value == '+2' %}
+                {% else %}
+                    {% set playable = card.color == topCard.color or card.value == topCard.value %}
+                {% endif %}
 
                 {% if currentPlayer.id == 0 and playable %}
                     <a href="{{ path('player_play', { id: loop.index0 }) }}" class="uno-card playable {{ card.color|lower }}">
@@ -75,8 +85,13 @@
 
     {% if currentPlayer.id == 0 and not canPlay %}
         <div class="enemy-turn-box">
-            <p>Aucune carte jouable.</p>
-            <p>Tu pioches automatiquement...</p>
+            {% if drawStack > 0 %}
+                <p>Tu n’as pas de +2 pour répondre.</p>
+                <p>Tu pioches automatiquement {{ drawStack }} carte(s)...</p>
+            {% else %}
+                <p>Aucune carte jouable.</p>
+                <p>Tu pioches automatiquement...</p>
+            {% endif %}
         </div>
 
         <script>

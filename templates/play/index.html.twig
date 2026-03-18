@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Plateau - MyUno{% endblock %}
+
+{% block body %}
+    <section class="board">
+        <h1 class="page-title">Plateau de jeu</h1>
+
+        <div class="status-bar">
+            <p><strong>Carte au sommet :</strong></p>
+            <div class="top-card {{ topCard.color|lower }}">
+                <span class="card-color">{{ topCard.color }}</span>
+                <span class="card-value">{{ topCard.value }}</span>
+            </div>
+
+            <p class="turn-info">
+                <strong>Tour actuel :</strong> {{ currentPlayer.name }}
+            </p>
+
+            {% if drawStack > 0 %}
+                <p class="draw-stack">
+                    Empilement +2 : {{ drawStack }}
+                </p>
+            {% endif %}
+        </div>
+
+        <section class="opponents">
+            <h2>Adversaires</h2>
+
+            <div class="opponents-list">
+                {% for player in players %}
+                    {% if not player.isHuman %}
+                        <div class="opponent-card {% if currentPlayer.id == player.id %}active-player{% endif %}">
+                            <h3>{{ player.name }}</h3>
+                            <p>{{ player.cardCount }} carte(s)</p>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </section>
+
+        <section class="player-hand-section">
+            <h2>Ta main</h2>
+
+            <div class="player-hand">
+                {% for card in players[0].hand %}
+                    {% set playable = card.color == topCard.color or card.value == topCard.value %}
+
+                    {% if currentPlayer.id == 0 and playable %}
+                        <a
+                            href="{{ path('player_play', { id: loop.index0 }) }}"
+                            class="uno-card playable {{ card.color|lower }}"
+                        >
+                            <span class="card-color">{{ card.color }}</span>
+                            <span class="card-value">{{ card.value }}</span>
+                        </a>
+                    {% else %}
+                        <div class="uno-card disabled {{ card.color|lower }}">
+                            <span class="card-color">{{ card.color }}</span>
+                            <span class="card-value">{{ card.value }}</span>
+                        </div>
+                    {% endif %}
+                {% else %}
+                    <p>Aucune carte.</p>
+                {% endfor %}
+            </div>
+        </section>
+
+        {% if currentPlayer.id != 0 %}
+            <div class="enemy-turn-box">
+                <p>{{ currentPlayer.name }} réfléchit...</p>
+                <p>Son tour sera joué automatiquement dans 3 secondes.</p>
+            </div>
+
+            <script>
+                setTimeout(() => {
+                    window.location.href = "{{ path('enemy_play', { id: currentPlayer.id }) }}";
+                }, 3000);
+            </script>
+        {% endif %}
+    </section>
+{% endblock %}

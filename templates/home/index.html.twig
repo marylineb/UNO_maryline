@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil - MyUno{% endblock %}
+
+{% block body %}
+<div class="home-container">
+
+    <h1 class="home-title">Bienvenue dans MyUno 🎴</h1>
+
+    <p class="intro">
+        Affronte 3 ordinateurs et tente d’être la première à te débarrasser de toutes tes cartes !
+    </p>
+
+    <section class="rules">
+        <h2>Règles du jeu</h2>
+
+        <ul>
+            <li>Chaque joueur joue à tour de rôle.</li>
+            <li>Tu dois poser une carte de la <strong>même couleur</strong> ou de la <strong>même valeur</strong>.</li>
+            <li>Si tu ne peux pas jouer → tu <strong>pioches une carte</strong>.</li>
+        </ul>
+
+        <h3>Cartes spéciales</h3>
+
+        <ul>
+            <li><strong>X</strong> → le joueur suivant passe son tour</li>
+            <li><strong>S</strong> → le sens du jeu change</li>
+            <li><strong>+2</strong> → le joueur suivant doit poser un +2 ou piocher</li>
+        </ul>
+
+        <h3>Objectif</h3>
+        <p>
+            Être la première à ne plus avoir de cartes !
+        </p>
+    </section>
+
+    <div class="start-game">
+        <a href="{{ path('home') }}" class="start-btn">
+            Nouvelle partie
+        </a>
+    </div>
+
+</div>
+{% endblock %}

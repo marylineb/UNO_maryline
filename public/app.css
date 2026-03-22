@@ -70,9 +70,6 @@ body::before {
     padding: 18px;
 }
 
-/* =========================
-   HEADER
-========================= */
 
 .main-header {
     min-height: var(--header-height);
@@ -132,9 +129,6 @@ body::before {
     box-shadow: 0 0 16px rgba(255, 209, 102, 0.18);
 }
 
-/* =========================
-   GRID PRINCIPALE
-========================= */
 
 .game-board {
     height: 100%;
@@ -157,10 +151,6 @@ body::before {
     min-height: 0;
 }
 
-/* =========================
-   ZONES
-========================= */
-
 .center-zone {
     grid-area: center;
     display: flex;
@@ -179,10 +169,6 @@ body::before {
     flex-direction: column;
     justify-content: center;
 }
-
-/* =========================
-   PANELS
-========================= */
 
 .pile-panel,
 .opponents-zone,
@@ -214,10 +200,6 @@ body::before {
     );
     pointer-events: none;
 }
-
-/* =========================
-   CENTRE
-========================= */
 
 .pile-panel {
     display: flex;
@@ -255,10 +237,6 @@ body::before {
     font-weight: 900;
     text-shadow: 0 0 12px rgba(255, 232, 138, 0.4);
 }
-
-/* =========================
-   ADVERSAIRES
-========================= */
 
 .opponents-zone h2,
 .hand-zone h2 {
@@ -319,10 +297,6 @@ body::before {
         0 0 20px rgba(255, 209, 102, 0.22);
 }
 
-/* =========================
-   MAIN JOUEUR
-========================= */
-
 .hand-zone {
     justify-content: center;
 }
@@ -347,10 +321,6 @@ body::before {
     background: rgba(255,255,255,0.25);
     border-radius: 999px;
 }
-
-/* =========================
-   CARTES
-========================= */
 
 .uno-card,
 .top-card {
@@ -435,10 +405,6 @@ body::before {
     text-shadow: 0 2px 8px rgba(0,0,0,0.18);
 }
 
-/* =========================
-   COULEURS DES CARTES
-========================= */
-
 .rouge {
     background: var(--red-card);
 }
@@ -457,10 +423,6 @@ body::before {
     border-color: rgba(255,255,255,0.9);
 }
 
-/* =========================
-   MESSAGE TOUR
-========================= */
-
 .turn-box {
     margin-top: 6px;
     padding: 10px 14px;
@@ -471,9 +433,6 @@ body::before {
     font-weight: 600;
     box-shadow: var(--shadow-soft);
 }
-/* =========================
-   PAGE ACCUEIL
-========================= */
 
 .home-container {
     min-height: calc(100vh - var(--header-height));
@@ -592,10 +551,6 @@ body::before {
         0 0 22px rgba(255, 209, 102, 0.35);
     filter: brightness(1.04);
 }
-
-/* =========================
-   PAGE FIN DE PARTIE
-========================= */
 
 .end-container {
     min-height: calc(100vh - var(--header-height));
@@ -719,10 +674,6 @@ body::before {
     box-shadow: 0 14px 24px rgba(0, 0, 0, 0.22);
 }
 
-/* =========================
-   RESPONSIVE ACCUEIL / FIN
-========================= */
-
 @media (max-width: 560px) {
     .logo-link {
         font-size: 2rem;
@@ -787,10 +738,6 @@ body::before {
         width: 100%;
     }
 }
-
-/* =========================
-   RESPONSIVE
-========================= */
 
 @media (max-width: 1000px) {
     html,

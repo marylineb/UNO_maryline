@@ -68,10 +68,7 @@ final class PlayerController extends AbstractController
                 return $this->redirectToRoute('play');
             }
         } else {
-            /*
-             * CAS 2 : pas de +2 empilé
-             * Si aucune carte jouable, le joueur pioche 1 puis passe.
-             */
+            
             if (!$player->hasPlayableCard($topCard)) {
                 $drawnCard = $gameState->drawCard();
 

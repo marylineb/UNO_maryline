@@ -4,32 +4,30 @@
 
 {% block body %}
 <div class="home-container">
-    <h1 class="home-title">Bienvenue dans MyUno 🎴</h1>
+    <h1 class="home-title">Bienvenue sur MyUno</h1>
 
     <p class="intro">
-        Affronte 3 ordinateurs et tente d’être la première à te débarrasser de toutes tes cartes.
+        Affronte 3 adversaires et tente de te débarrasser de toutes tes cartes !
     </p>
 
-    <section class="rules-box">
+    <div class="rules-box">
         <h2>Règles du jeu</h2>
-        <h3>Principe du jeu</h3>
-        <ul class="rules-list">
-            <li>Chaque joueur joue à tour de rôle.</li>
-            <li>Tu dois poser une carte de la <strong>même couleur</strong> ou de la <strong>même valeur</strong> que celle sur la pile.</li>
-            <li>Si tu ne peux pas jouer, tu dois <strong>piocher une carte</strong> automatiquement.</li>
-            <li>Le premier joueur qui n’a plus de cartes gagne la partie.</li>
-        </ul>
 
-        <h3>Cartes spéciales</h3>
         <ul class="rules-list">
-            <li><strong>X</strong> : le joueur suivant passe son tour.</li>
-            <li><strong>S</strong> : le sens du jeu change.</li>
-            <li><strong>+2</strong> : le joueur suivant doit poser un +2 ou piocher 2 cartes.</li>
+            <li>Chaque joueur joue une carte à tour de rôle.</li>
+            <li>Une carte est jouable si elle a la même couleur ou valeur.</li>
+            <li><strong>+2</strong> : le joueur suivant pioche 2 cartes.</li>
+            <li><strong>X</strong> : saute le tour du joueur suivant.</li>
+            <li><strong>S</strong> : inverse le sens.</li>
+            <li>Si tu ne peux pas jouer → tu pioches.</li>
+            <li>Le premier à 0 carte gagne.</li>
         </ul>
-    </section>
+    </div>
 
     <div class="start-zone">
-        <a href="{{ path('new_game') }}" class="start-btn">Nouvelle partie</a>
+        <a href="{{ path('new_game') }}" class="start-btn">
+            Lancer une partie
+        </a>
     </div>
 </div>
 {% endblock %}

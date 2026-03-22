@@ -4,16 +4,24 @@
 
 {% block body %}
 <div class="end-container">
-    <h1>🎉 Fin de la partie 🎉</h1>
+    <div class="end-card">
+        <h1>Fin de partie</h1>
 
-    {% if winner %}
-        <h2>Le gagnant est : {{ winner.name }}</h2>
-    {% else %}
-        <p>Aucun gagnant.</p>
-    {% endif %}
+        <h2>
+            🎉 {{ winner.name }} a gagné !
+        </h2>
 
-    <a href="{{ path('new_game') }}" class="restart-btn">
-        Rejouer une partie
-    </a>
+        <p>Merci d’avoir joué à MyUno</p>
+
+        <div class="actions-zone">
+            <a href="{{ path('new_game') }}" class="restart-btn">
+                Rejouer
+            </a>
+
+            <a href="{{ path('home') }}" class="action-btn">
+                Accueil
+            </a>
+        </div>
+    </div>
 </div>
 {% endblock %}

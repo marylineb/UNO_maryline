@@ -35,6 +35,10 @@ symfony serve   # ou : php -S localhost:8000 -t public
 
 Aucune base de données n'est nécessaire.
 
+## À propos des fichiers `.env`
+
+Les fichiers `.env`, `.env.dev` et `.env.test` sont versionnés volontairement : c'est la convention de Symfony. Ils ne contiennent que des valeurs par défaut pour le développement, aucun secret. Les vraies valeurs vont dans `.env.local` (ignoré par Git) en local, et dans les variables d'environnement de l'hébergeur en production.
+
 ## Auteure
 
 Maryline Biloa · [Portfolio](https://marylinebiloa.com)
